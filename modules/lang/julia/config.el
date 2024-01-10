@@ -134,4 +134,12 @@
                "a" #'julia-snail-package-activate
                "d" #'julia-snail-doc-lookup
                "m" #'julia-snail-repl-go-back
-               "r" #'julia-snail-update-module-cache))))
+               "r" #'julia-snail-update-module-cache)))
+
+  (add-hook 'julia-snail-mode-hook
+            (defun +julia--snail-enable-completion ()
+              "Use julia-snail-mode completion based Julia's REPL.REPLCompletions"
+              (add-hook 'completion-at-point-functions
+                        #'julia-snail-repl-completion-at-point nil t))
+            )
+  )
